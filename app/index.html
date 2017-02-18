@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/materialize.css">
     <link rel="stylesheet" href="styles/icon.css">
+    <link rel="stylesheet" href="styles/please-wait.css">
     <!-- endbuild -->
   </head>
   <body ng-app="dashboardApp">
@@ -88,6 +89,18 @@
         <script src="scripts/services/firebaseconfig.js"></script>
         <script src="scripts/services/autenticacao.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/please-wait.min.js"></script>
+        <script>
+      var config = {
+        apiKey: "AIzaSyCyc2ALBgjefwiRi2JmgnbthRyoItc5xDI",
+        authDomain: "prefeitura-itaborai.firebaseapp.com",
+        databaseURL: "https://prefeitura-itaborai.firebaseio.com",
+        storageBucket: "prefeitura-itaborai.appspot.com",
+        messagingSenderId: "173683396331"
+      };
+      firebase.initializeApp(config);
+    </script>
         <!-- endbuild -->
+
 </body>
 </html>

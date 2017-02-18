@@ -1,8 +1,8 @@
     <div class="header"> 
 	  <nav>
 	    <div class="nav-wrapper">
-	      <a href="#" class="brand-logo center">Logo</a>
-	      <ul id="nav-mobile" class="left hide-on-med-and-down">
+	      <a href="#" class="brand-logo">Central de Chamados</a>
+	      <ul id="nav-mobile" class="right hide-on-med-and-down">
 	        <li><a href="sass.html">Chamados abertos</a></li>
 	        <li><a href="badges.html">Chamados solucionados</a></li>
 	        <li><a href="collapsible.html">Chamados denunciados</a></li>
@@ -78,25 +78,15 @@
 	</thead>
 
 	<tbody>
-	  <tr>
-	    <td>Lixo jogado na rua da minha casa</td>
-	    <td>Há uma enorme quantidade de lixo jogado na  frente de minha minha casa, solicito a prefeitura para retirada do mesmo</td>
-	    <td>Rua José Miranda da Mota, 692 - Serra do Sambê</td>
-	    <td><a href=https://firebasestorage.googleapis.com/v0/b/prefeitura-itaborai.appspot.com/o/chamados%2F13022017120231.jpg?alt=media&token=54636fcb-bea4-456e-8f3c-bb3946d1d769> Link </a>
-	    <td>José Antônio </td>
+	  <tr ng-repeat="chamado in chamados | orderBy: '-controle_data'" ng-show="chamado.tipo === 'aberto'">
+	    <td>{{chamado.titulo}}</td>
+	    <td>{{chamado.texto}}</td>
+	    <td>{{chamado.local}}</td>
+	    <td><a ng-href="{{chamado.imagem_url}}" target="_blank"> Link </a>
+	    <td>{{chamado.nome}} </td>
 	    <td> <a class="btn-floating waves-effect waves-light blue" alt="asd"><i class="material-icons">queue</i></a></td>
 	    <td> <a class="btn-floating waves-effect waves-light green"><i class="material-icons">done_all</i></a></td>
 	    <td> <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a></td>
-	  </tr>
-	  <tr>
-	    <td>Alan</td>
-	    <td>Jellybean</td>
-	    <td>$3.76</td>
-	  </tr>
-	  <tr>
-	    <td>Jonathan</td>
-	    <td>Lollipop</td>
-	    <td>$7.00</td>
 	  </tr>
 	</tbody>
 </table>

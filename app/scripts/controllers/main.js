@@ -9,8 +9,6 @@
  */
 angular.module('dashboardApp')
   .controller('MainCtrl', function ($scope, FirebaseConfig, $location, Autenticacao) {
-   
-  	firebase.initializeApp(FirebaseConfig);
   	var autenticado = false;
   	$scope.login = function(email, password) {
   		firebase.auth().signInWithEmailAndPassword(email, password)
