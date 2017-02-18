@@ -45,5 +45,19 @@ angular.module('dashboardApp')
 		$scope.chamadosAbertos = chamadoAberto.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
-   	});   
+   	});  
+
+   	$scope.responder = function(controle_data) {
+   		console.log(controle_data);
+   	};
+
+    $scope.finalizar = function(cd) {
+      firebase.database().ref('chamados').child(cd).update({
+        tipo: 'fechado'
+      });
+    };
+
+    $scope.apagar = function(cd){
+      firebase.database().ref('chamados').child(cd).remove();
+    };
   });
