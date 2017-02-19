@@ -20,7 +20,19 @@ angular.module('dashboardApp')
   				console.log(Autenticacao);
   			})
   			.catch(function(error){
-  				console.log(error);
+          var mensagemErro;
+  				if(error.code == 'auth/invalid-email'){
+            mensagemErro = 'O endereço de email é inválido!';
+          } else if (error.code == 'auth/user-disabled') {
+            mensagemErro = 'O usuário foi desativado.';
+          } else if (error.code == 'auth/user-not-found') {
+            mensagemErro = 'Usuário não encontrado.';
+          } else if (error.code == 'auth/wrong-password'){
+            mensagemErro = 'Senha incorreta.';
+          }
+
+          Materialize.toast(mensagemErro, 4000);
+
   			});
   	};
 
