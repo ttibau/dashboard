@@ -2,22 +2,16 @@
 
 /**
  * @ngdoc function
- * @name dashboardApp.controller:DashboardCtrl
+ * @name dashboardApp.controller:ChamadossolucionadosCtrl
  * @description
- * # DashboardCtrl
+ * # ChamadossolucionadosCtrl
  * Controller of the dashboardApp
  */
 angular.module('dashboardApp')
-  .controller('DashboardCtrl', function ($scope, $firebaseArray, $route) {
-   
-   	//$route.reload();
-   	//firebase.initializeApp(FirebaseConfig);
-   	var chamadoAberto = [];
+  .controller('ChamadossolucionadosCtrl', function ($scope, $firebaseArray) {
+    
+  	var chamadoAberto = [];
    	var chamadoFechado = [];
-
-   	var ref = firebase.database().ref('chamados');
-   	$scope.chamados = $firebaseArray(ref);
-   	var todosChamados =$scope.chamados;
 
    	window.login_screen = window.pleaseWait({
    		logo: 'images/download.gif',
@@ -25,7 +19,11 @@ angular.module('dashboardApp')
         loadingHtml: "<p class='loading-message'>Carregando dados, aguarde...</p>"
    	});
 
-   	todosChamados.$loaded().then(function(data){
+   	var ref = firebase.database().ref('chamados');
+   	$scope.chamados = $firebaseArray(ref);
+   	var todosChamados =$scope.chamados;
+
+	todosChamados.$loaded().then(function(data){
 
    		window.login_screen.finish();
 
@@ -45,21 +43,18 @@ angular.module('dashboardApp')
 		$scope.chamadosAbertos = chamadoAberto.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
-   	});  
+   	});     	
 
-   	$scope.responder = function(controle_data) {
-   		console.log(controle_data);
-   	};
+	$scope.reabrir = function(cd) {
+		firebase.database().ref('chamados').child(cd).update({
+			tipo: 'aberto'
+		});
+		Materialize.toast('O chamado foi reaberto e já pode ser visto na seção de chamados abertos', 5000);
+	};
 
-    $scope.finalizar = function(cd) {
-      firebase.database().ref('chamados').child(cd).update({
-        tipo: 'fechado'
-      });
-      Materialize.toast('O chamado foi marcado como finalizado e já pode ser visto na área de chamados finalizados', 4000);
-    };
+	$scope.apagar = function(cd){
+		firebase.database().ref('chamados').child(cd).remove();
+		Materialize.toast('O chamado foi removido do banco de dados permanentemente', 4000);
+	};
 
-    $scope.apagar = function(cd){
-      firebase.database().ref('chamados').child(cd).remove();
-      Materialize.toast('O chamado foi permanentemente removido do banco de dados', 4000);
-    };
   });

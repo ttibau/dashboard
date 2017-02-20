@@ -41,6 +41,11 @@ angular
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
       })
+      .when('/chamadosSolucionados', {
+        templateUrl: 'views/chamadossolucionados.html',
+        controller: 'ChamadossolucionadosCtrl',
+        controllerAs: 'chamadosSolucionados'
+      })
       .otherwise({
         redirectTo: '/'
       });
