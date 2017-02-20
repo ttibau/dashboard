@@ -8,7 +8,7 @@
  * Controller of the dashboardApp
  */
 angular.module('dashboardApp')
-  .controller('DashboardCtrl', function ($scope, $firebaseArray, $route) {
+  .controller('DashboardCtrl', function ($scope, $firebaseArray, $route, ResponderChamado, $location) {
    
    	//$route.reload();
    	//firebase.initializeApp(FirebaseConfig);
@@ -42,13 +42,14 @@ angular.module('dashboardApp')
 
    		data.forEach(logArrayElements);
    		console.log(chamadoFechado.length, chamadoAberto.length);
-		$scope.chamadosAbertos = chamadoAberto.length;
+		  $scope.chamadosAbertos = chamadoAberto.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
    	});  
 
    	$scope.responder = function(controle_data) {
-   		console.log(controle_data);
+   		ResponderChamado = controle_data;
+      $location.path('/responderChamado');
    	};
 
     $scope.finalizar = function(cd) {
