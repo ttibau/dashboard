@@ -48,8 +48,15 @@ angular.module('dashboardApp')
 	$scope.reabrir = function(cd) {
 		firebase.database().ref('chamados').child(cd).update({
 			tipo: 'aberto'
-		});
-		Materialize.toast('O chamado foi reaberto e já pode ser visto na seção de chamados abertos', 5000);
+		}, function(error){
+      if (error){
+        console.log(error);
+      } else {
+        Materialize.toast('O chamado foi reaberto e já pode ser visto na seção de chamados abertos', 7000);
+      }
+      
+    });
+		
 	};
 
 	$scope.apagar = function(cd){

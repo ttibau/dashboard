@@ -48,15 +48,20 @@ angular.module('dashboardApp')
    	});  
 
    	$scope.responder = function(controle_data) {
-   		ResponderChamado = controle_data;
+   		ResponderChamado.chamado = controle_data;
       $location.path('/responderChamado');
    	};
 
     $scope.finalizar = function(cd) {
       firebase.database().ref('chamados').child(cd).update({
         tipo: 'fechado'
+      }, function(error){
+        if (error){
+          console.log(error);
+        } else {
+          Materialize.toast('O chamado foi marcado como finalizado e já pode ser visto na área de chamados finalizados', 7000);
+        }
       });
-      Materialize.toast('O chamado foi marcado como finalizado e já pode ser visto na área de chamados finalizados', 4000);
     };
 
     $scope.apagar = function(cd){

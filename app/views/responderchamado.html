@@ -1,1 +1,27 @@
-<p>This is the responderChamado view.</p>
+<div class="container">
+	<div class="row">
+		        <div class="col  m6 offset-s3">
+		          <div class="card blue-grey darken-1">
+		            <div class="card-content white-text">
+		              <span class="card-title">Aviso</span>
+		              <p>Caso queira alterar a resposta já enviada, envie uma nova que a anterior será substituida.</p>
+		            </div>
+		            <div class="card-action">
+		              <a href="#!/dashboard">Voltar para lista</a>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+	  	<div class="input-field col s12">
+	      	<i class="material-icons prefix">mode_edit</i>
+	      	<textarea id="icon_prefix2" class="materialize-textarea" ng-model="resposta"></textarea>
+	      	<label for="icon_prefix2">Resposta da prefeitura</label>
+	    </div>  	
+	      	  <center><button class="btn waves-effect waves-light" type="submit" name="action" ng-click="enviarResposta(resposta)">Enviar
+			    <i class="material-icons right">send</i>
+			  </button></center>
+			  <p></p>
+		</div>
+</div>
+ 
+	  
