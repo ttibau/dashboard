@@ -23,6 +23,7 @@ angular.module('dashboardApp')
     		} else {
     			Materialize.toast('Resposta enviada com sucesso, se desejar finalizar o chamado, clique na opção de finalizar no chamado', 7000);
     			$location.path('/dashboard');
+    			$scope.$apply();
     		}
     	});
     };

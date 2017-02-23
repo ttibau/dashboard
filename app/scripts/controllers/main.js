@@ -16,8 +16,6 @@ angular.module('dashboardApp')
   				console.log(firebaseUser);
   				$location.path('/dashboard');
   				$scope.$apply();
-  				autenticado = true;
-  				console.log(Autenticacao);
   			})
   			.catch(function(error){
           var mensagemErro;
