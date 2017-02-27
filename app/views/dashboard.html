@@ -77,6 +77,7 @@
 		      <th>Local</th>
 		      <th>Link da imagem</th>
 		      <th>Nome</th>
+		      <th>Contato</th>
 		      <th>Ações</th>
 		  </tr>
 		</thead>
@@ -88,6 +89,7 @@
 		    <td>{{chamado.local}}</td>
 		    <td><a ng-href="{{chamado.imagem_url}}" target="_blank"> Link </a>
 		    <td>{{chamado.nome}} </td>
+		    <td>{{chamado.contato}}</td>
 		    <td> <a class="btn-floating waves-effect waves-light blue" ng-click="responder(chamado.controle_data)"><i class="material-icons">queue</i></a></td>
 		    <td> <a class="btn-floating waves-effect waves-light green" ng-click="finalizar(chamado.controle_data)"><i class="material-icons">done_all</i></a></td>
 		    <td> <a class="btn-floating waves-effect waves-light red"><i class="material-icons" ng-click="apagar(chamado.controle_data)">delete</i></a></td>
