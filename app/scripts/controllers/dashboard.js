@@ -14,6 +14,7 @@ angular.module('dashboardApp')
    	//firebase.initializeApp(FirebaseConfig);
    	var chamadoAberto = [];
    	var chamadoFechado = [];
+    var chamadoDenunciado = [];
 
    	var ref = firebase.database().ref('chamados');
    	$scope.chamados = $firebaseArray(ref);
@@ -37,12 +38,15 @@ angular.module('dashboardApp')
    			}
 			else if (element.tipo == 'fechado'){
 				chamadoFechado.push(element.tipo);
-			}
+			} else if (element.tipo == 'denunciado'){
+        chamadoDenunciado.push(element.tipo);
+      }
    		};
 
    		data.forEach(logArrayElements);
    		console.log(chamadoFechado.length, chamadoAberto.length);
 		  $scope.chamadosAbertos = chamadoAberto.length;
+      $scope.chamadosDenunciados = chamadoDenunciado.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
    	});  

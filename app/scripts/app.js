@@ -51,6 +51,11 @@ angular
         controller: 'ResponderchamadoCtrl',
         controllerAs: 'responderChamado'
       })
+      .when('/chamadosDenunciados', {
+        templateUrl: 'views/chamadosdenunciados.html',
+        controller: 'ChamadosdenunciadosCtrl',
+        controllerAs: 'chamadosDenunciados'
+      })
       .otherwise({
         redirectTo: '/'
       });
