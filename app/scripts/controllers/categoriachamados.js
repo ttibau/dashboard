@@ -8,7 +8,8 @@
  * Controller of the dashboardApp
  */
 angular.module('dashboardApp')
-  .controller('CategoriachamadosCtrl', function ($scope, $firebaseArray) {
+  .controller('CategoriachamadosCtrl', function ($scope, $firebaseArray, $firebaseObject) {
+  	$scope.form = {};
     var chamadoAberto = [];
    	var chamadoFechado = [];
     var chamadoDenunciado = [];
@@ -29,7 +30,7 @@ angular.module('dashboardApp')
 
    		// funcao que vai imprimir na tela os elementos do forEach
    		function logArrayElements(element, index, array){
-   			console.log("chamado[" + index + "] = " + element.tipo);
+   			//console.log("chamado[" + index + "] = " + element.tipo);
    			if (element.tipo == 'aberto'){
 				chamadoAberto.push(element.tipo);
    			}
@@ -42,10 +43,39 @@ angular.module('dashboardApp')
    		};
 
    		data.forEach(logArrayElements);
-   		console.log(chamadoFechado.length, chamadoAberto.length);
+   		//console.log(chamadoFechado.length, chamadoAberto.length);
 		$scope.chamadosAbertos = chamadoAberto.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
-      $scope.chamadosDenunciados = chamadoDenunciado.length;
+      	$scope.chamadosDenunciados = chamadoDenunciado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
-   	});     	
+   	}); 
+
+
+	$scope.criarCategoria = function(categoria, orgao){
+		firebase.database().ref('categorias').child(categoria).update({
+			categoria: categoria,
+			orgaoResponsavel: orgao
+		}, function(error){
+			if (error) {
+				console.log(error);
+				Materialize.toast('Ocorreu algum erro', 4000);
+				$scope.form.categoriaForm.$setPristine();
+			} else {
+				console.log('Categoria criada com sucesso');
+				Materialize.toast('Categoria criada com sucesso!', 4000);
+			}
+		});
+	};
+
+
+	var refCategorias = firebase.database().ref('categorias');
+	$scope.categorias = $firebaseArray(refCategorias);
+	
+	$scope.apagarCategoria = function(categoria){
+
+		firebase.database().ref('categorias').child(categoria).remove();
+		Materialize.toast('Categoria removida permanentemente do banco de dados', 4000);
+
+	};
+
   });
