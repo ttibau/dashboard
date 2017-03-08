@@ -98,38 +98,43 @@
 		</div>	
 	</div>	
 
-	<div class="card-panel blue darken-2 lighten-2 white-text center-align">
-	  	<i class="material-icons">warning</i> <h6><strong>Atenção</strong> esta área é a área de chamados ainda não solucionados! </h6>
+
+<div class="container">
+	<div class="card">
+	<center>
+      <div class="row">
+        <div class="col s12">
+          	Criar uma nova categoria:
+          	<div class="input-field inline">
+            	<input id="categoria" type="text" >
+           	 <label  data-error="wrong" data-success="right">Nome</label>
+          	</div>
+          	<div class="input-field inline">
+            	<input id="destino" type="text" >
+           	 <label  data-error="wrong" data-success="right">Órgão responsável</label>
+          	</div>
+          	<button class="btn waves-effect waves-light" type="submit" name="action">Criar
+			    <i class="material-icons right">note_add</i>
+			 </button>
+        	</div>
+    	</center>
+    	</div>    
 	</div>
+</div>
 
-	<table class="highlight">
-		<thead>
-		  <tr>
-		      <th>Titulo</th>
-		      <th>Descrição</th>
-		      <th>Local</th>
-		      <th>Link da imagem</th>
-		      <th>Nome</th>
-		      <th>Contato</th>
-		      <th>Ações</th>
-		  </tr>
-		</thead>
-
-		<tbody>
-		  <tr ng-repeat="chamado in chamados | orderBy: '-controle_data'" ng-show="chamado.tipo === 'aberto'">
-		    <td>{{chamado.titulo}}</td>
-		    <td>{{chamado.texto}}</td>
-		    <td>{{chamado.local}}</td>
-		    <td><a ng-href="{{chamado.imagem_url}}" target="_blank"> Link </a>
-		    <td>{{chamado.nome}} </td>
-		    <td>{{chamado.contato}}</td>
-		    <td> <a class="btn-floating waves-effect waves-light blue" ng-click="responder(chamado.controle_data)"><i class="material-icons">queue</i></a></td>
-		    <td> <a class="btn-floating waves-effect waves-light green" ng-click="finalizar(chamado.controle_data)"><i class="material-icons">done_all</i></a></td>
-		    <td> <a class="btn-floating waves-effect waves-light red"><i class="material-icons" ng-click="apagar(chamado.controle_data)">delete</i></a></td>
-		  </tr>
-		</tbody>
-	</table>
-	<div class="right-align">
-		<span class="btn-floating waves-effect waves-light blue"><i class="material-icons">queue</i></span> <strong>Responder</strong> | <a class="btn-floating waves-effect waves-light green"><i class="material-icons">done_all</i></a> <strong>Finalizar</strong> | <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a> Excluir
-	</div>
-
+<table class="highlight">
+	<thead>
+		<th>Nome</th>
+		<th>Órgão Responsável</th>
+		<th>Ações</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>NomeDoChamado</td>
+			<td>ÓrgãoResponsávelPeloChamado</td>
+			<td><a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a></td>
+			<td><a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a></td>
+			
+		</tr>
+	</tbody>
+</table>

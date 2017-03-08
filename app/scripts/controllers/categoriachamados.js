@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name dashboardApp.controller:ChamadosdenunciadosCtrl
+ * @name dashboardApp.controller:CategoriachamadosCtrl
  * @description
- * # ChamadosdenunciadosCtrl
+ * # CategoriachamadosCtrl
  * Controller of the dashboardApp
  */
 angular.module('dashboardApp')
-  .controller('ChamadosdenunciadosCtrl', function ($scope, $firebaseArray) {
+  .controller('CategoriachamadosCtrl', function ($scope, $firebaseArray) {
     var chamadoAberto = [];
    	var chamadoFechado = [];
-   	var chamadoDenunciado = [];
+    var chamadoDenunciado = [];
 
    	window.login_screen = window.pleaseWait({
    		logo: 'images/download.gif',
@@ -35,50 +35,17 @@ angular.module('dashboardApp')
    			}
 			else if (element.tipo == 'fechado'){
 				chamadoFechado.push(element.tipo);
-			} else if (element.tipo == 'denunciado'){
-				chamadoDenunciado.push(element.tipo);
-			}
+			 } else if (element.tipo == 'denunciado'){
+        chamadoDenunciado.push(element.tipo);
+       }
+
    		};
 
    		data.forEach(logArrayElements);
    		console.log(chamadoFechado.length, chamadoAberto.length);
 		$scope.chamadosAbertos = chamadoAberto.length;
 	  	$scope.chamadosSolucionados = chamadoFechado.length;
-	  	$scope.chamadosDenunciados = chamadoDenunciado.length; 
+      $scope.chamadosDenunciados = chamadoDenunciado.length;
 	  	$scope.chamadosTotal = $scope.chamadosAbertos + $scope.chamadosSolucionados;
    	});     	
-
-	$scope.reabrir = function(cd) {
-		firebase.database().ref('chamados').child(cd).update({
-			tipo: 'aberto', 
-      denuncias: 0
-		}, function(error){
-      if (error){
-        console.log(error);
-      } else {
-        Materialize.toast('O chamado foi reaberto e já pode ser visto na seção de chamados abertos', 7000);
-      }
-      
-    });
-		
-	};
-
-	$scope.apagar = function(cd){
-		firebase.database().ref('chamados').child(cd).remove();
-		Materialize.toast('O chamado foi removido do banco de dados permanentemente', 4000);
-	};
-
-  $scope.fecharChamado = function(cd){
-    firebase.database().ref('chamados').child(cd).update({
-      tipo: 'fechado', 
-      denuncias: 0
-    }, function(error){
-      if (error) {
-        console.log(error);
-      } else {
-        Materialize.toast('O chamado foi movido para a área de chamados solucionados', 4000);
-      }
-    })
-  }
-
   });
