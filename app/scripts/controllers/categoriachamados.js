@@ -70,6 +70,8 @@ angular.module('dashboardApp')
 
 	var refCategorias = firebase.database().ref('categorias');
 	$scope.categorias = $firebaseArray(refCategorias);
+	$scope.categoriasTamanho = $scope.categorias.length;
+	
 	
 	$scope.apagarCategoria = function(categoria){
 
